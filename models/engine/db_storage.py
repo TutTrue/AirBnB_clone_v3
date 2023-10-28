@@ -83,4 +83,4 @@ class DBStorage:
         if cls:
             return self.__session.query(cls).count()
         else:
-           return len(self.all())
+            return len(self.all())
