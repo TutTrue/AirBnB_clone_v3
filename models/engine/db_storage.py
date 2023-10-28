@@ -77,7 +77,7 @@ class DBStorage:
         self.__session.remove()
 
     def get(self, cls, id):
-        """get objext bu id"""
+        """get object by id"""
         return self.__session.query(cls).get(id)
 
     def count(self, cls=None):
