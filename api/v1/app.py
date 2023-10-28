@@ -12,10 +12,12 @@ app.url_map.strict_slashes = False
 
 app.register_blueprint(app_views)
 
+
 @app.errorhandler(404)
 def not_found(error):
     """not found route"""
     return make_response(jsonify({"error": "Not Found"}), 404)
+
 
 @app.teardown_appcontext
 def teardown(exception):
