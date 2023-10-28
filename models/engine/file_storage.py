@@ -71,9 +71,11 @@ class FileStorage:
         self.reload()
 
     def get(self, cls, id):
+        """get object by id"""
         for k, v in self.all(cls):
             if v['id'] == id:
                 return v
 
     def count(self, cls=None):
+        """get a count of a class in the file or all if cls is None"""
         return len(self.all(cls))
