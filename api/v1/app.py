@@ -14,6 +14,7 @@ app.register_blueprint(app_views)
 
 @app.errorhandler(404)
 def not_found(error):
+    """not found route"""
     return make_response(jsonify({"error": "Not Found"}), 404)
 
 @app.teardown_appcontext
@@ -23,6 +24,7 @@ def teardown(exception):
 
 
 if __name__ == '__main__':
+    """port and host"""
     host = getenv('HBNB_API_HOST', '0.0.0.0')
     port = getenv('HBNB_API_PORT', 5000)
 
