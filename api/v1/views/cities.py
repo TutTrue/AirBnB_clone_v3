@@ -25,3 +25,30 @@ def get_city(city_id):
     return make_response(jsonify(city.to_dict()),
                          200) if city else abort(404)
 
+
+@app_views.route('/cities/<city_id>', methods=['DELETE'])
+def delete_city(city_id):
+    """delete city"""
+    city = storage.get(City, city_id)
+    if not city:
+        abort(404)
+    city.delete()
+    storage.save()
+    return make_response({}, 200)
+
+
+@app_views.route('states/<state_id>/cities', methods=['POST'])
+def create_city(state_id):
+    """create a new state"""
+    state = storage.get(State, state_id)
+    if not state:
+        abort(404)
+    city = request.get_json()
+    if not city:
+        return make_response("Not a JSON", 400)
+    if not city.get('name'):
+        return make_response("Missing name", 400)
+    city['state_id'] = state_id
+    new_city = City(**city)
+    new_city.save()
+    return make_response(jsonify(new_city.to_dict()), 201)
