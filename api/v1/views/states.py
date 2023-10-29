@@ -54,7 +54,7 @@ def delete_state(state_id):
     """delete state"""
     state = storage.get(State, state_id)
     if not state:
-        return make_response("Not a JSON", 404)
+        abort(404)
     state.delete()
     storage.save()
     return make_response({}, 200)
