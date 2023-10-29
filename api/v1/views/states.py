@@ -43,7 +43,7 @@ def update_state(state_id):
         abort(404)
     new_state = request.get_json()
     if not new_state:
-        return make_response("Not a JSON", 404)
+        return make_response("Not a JSON", 400)
     setattr(cur_state, 'name', new_state.get('name'))
     storage.save()
     return make_response(cur_state.to_dict(), 200)
@@ -54,7 +54,7 @@ def delete_state(state_id):
     """delete state"""
     state = storage.get(State, state_id)
     if not state:
-        return make_response("Not a JSON", 400)
+        return make_response("Not a JSON", 404)
     state.delete()
     storage.save()
     return make_response({}, 200)
