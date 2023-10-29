@@ -16,7 +16,7 @@ app.register_blueprint(app_views)
 @app.errorhandler(404)
 def not_found(error):
     """not found route"""
-    return make_response(jsonify({"error": "Not Found"}), 404)
+    return make_response(jsonify({"error": "Not found"}), 404)
 
 
 @app.teardown_appcontext
