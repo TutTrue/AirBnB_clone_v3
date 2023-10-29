@@ -28,7 +28,7 @@ def create_state():
     state = request.get_json()
     if not state:
         return make_response("Not a JSON", 400)
-    if not state['name']:
+    if not state.get('name'):
         return make_response("Missing name", 400)
     new_state = State(**state)
     new_state.save()
