@@ -46,8 +46,9 @@ def update_user(user_id):
     new_user = request.get_json()
     if not new_user:
         return make_response("Not a JSON", 400)
+    ignored_keys = ['id', 'email', 'created_at', 'updated_at']
     for key, value in new_user.items():
-        if key not in ['id', 'email', 'created_at', 'updated_at']:
+        if key not in ignored_keys:
             setattr(cur_user, key, value)
     storage.save()
     return make_response(cur_user.to_dict(), 200)
