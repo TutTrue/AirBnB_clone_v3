@@ -56,7 +56,7 @@ def create_review(place_id):
         abort(404)
     if not review.get('text'):
         return make_response("Missing text", 400)
-    
+
     review["place_id"] = place_id
     new_review = Review(**review)
     new_review.save()
