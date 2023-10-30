@@ -42,10 +42,7 @@ def create_place(city_id):
     user = storage.get(User, place.get('user_id'))
     if not user:
         abort(404)
-
-    if not place.get("name"):
-        return make_response("Missing name", 400)
-
+    place['city_id'] = city_id
     new_place = Place(**place)
     new_place.save()
     return make_response(jsonify(new_place.to_dict()), 201)
