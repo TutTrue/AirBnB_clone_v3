@@ -48,7 +48,7 @@ def update_user(user_id):
         return make_response("Not a JSON", 400)
     for key, value in new_user.items():
         if key not in ['id', 'email', 'created_at', 'updated_at']:
-            setattr(cur_user, key , value)
+            setattr(cur_user, key, value)
     storage.save()
     return make_response(cur_user.to_dict(), 200)
 
