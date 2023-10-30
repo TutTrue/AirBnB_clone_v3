@@ -39,7 +39,7 @@ def create_place(city_id):
         return make_response("Not a JSON", 400)
     if not place.get('user_id'):
         return make_response("Missing user_id", 400)
-    user = storage.get(User, place.get('user_id'))
+    user = storage.get(User, place['user_id'])
     if not user:
         abort(404)
     place['city_id'] = city_id
