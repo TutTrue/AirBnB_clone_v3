@@ -9,7 +9,6 @@ from sqlalchemy.orm import relationship
 import hashlib
 
 
-
 class User(BaseModel, Base):
     """Representation of a user """
     if models.storage_t == 'db':
@@ -31,4 +30,4 @@ class User(BaseModel, Base):
         super().__init__(*args, **kwargs)
         password = kwargs.get("password")
         if kwargs and password:
-            self.password = hashlib.md5(password).hexdigest()
+            self.password = hashlib.md5(password.encode('utf-8')).hexdigest()
