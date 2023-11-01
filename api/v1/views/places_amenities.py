@@ -64,9 +64,11 @@ def add_amenity_to_place(place_id, amenity_id):
         amenity = amenity_id
         amenities_of_place = place.amenity_ids
 
+    code = 200
     if amenity not in amenities_of_place:
         amenities_of_place.append(amenity)
         storage.save()
+        code = 201
 
     return make_response(jsonify(
-        amenity.to_dict() if models.storage_t == "db" else amenity), 201)
+        amenity.to_dict() if models.storage_t == "db" else amenity_id), code)
