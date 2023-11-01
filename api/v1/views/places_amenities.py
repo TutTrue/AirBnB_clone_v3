@@ -66,6 +66,7 @@ def add_amenity_to_place(place_id, amenity_id):
 
     if amenity not in amenities_of_place:
         amenities_of_place.append(amenity)
+        storage.save()
 
-    storage.save()
-    return make_response(jsonify(amenity.to_dict()), 201)
+    return make_response(jsonify(
+        amenity.to_dict() if models.storage_t == "db" else amenity), 201)
